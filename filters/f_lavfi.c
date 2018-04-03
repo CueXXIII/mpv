@@ -895,9 +895,11 @@ static bool is_usable(const AVFilter *filter)
 static void print_help(struct mp_log *log)
 {
     mp_info(log, "List of libavfilter filters:\n");
-    for (const AVFilter *filter = avfilter_next(NULL); filter;
-         filter = avfilter_next(filter))
-    {
+    void *iter = NULL;
+    for (;;) {
+        const AVFilter *filter = av_filter_iterate(&iter);
+        if (!filter)
+            break;
         if (is_usable(filter))
             mp_info(log, " %-16s %s\n", filter->name, filter->description);
     }
