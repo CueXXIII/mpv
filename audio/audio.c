@@ -479,10 +479,10 @@ int mp_audio_to_avframe(struct mp_audio *frame, struct AVFrame *avframe)
 
     if (frame->num_planes > AV_NUM_DATA_POINTERS) {
         avframe->extended_data =
-            av_mallocz_array(frame->num_planes, sizeof(avframe->extended_data[0]));
+            av_calloc(frame->num_planes, sizeof(avframe->extended_data[0]));
         int extbufs = frame->num_planes - AV_NUM_DATA_POINTERS;
         avframe->extended_buf =
-            av_mallocz_array(extbufs, sizeof(avframe->extended_buf[0]));
+            av_calloc(extbufs, sizeof(avframe->extended_buf[0]));
         if (!avframe->extended_data || !avframe->extended_buf)
             goto fail;
         avframe->nb_extended_buf = extbufs;
