@@ -257,7 +257,7 @@ static void reset(struct ao *ao)
     atomic_store(&p->end_time_us, 0);
 }
 
-static void pause(struct ao *ao)
+static void pause_pull_2(struct ao *ao)
 {
     if (!ao->stream_silence && ao->driver->reset)
         ao->driver->reset(ao);
@@ -331,7 +331,7 @@ const struct ao_driver ao_api_pull = {
     .play = play,
     .get_delay = get_delay,
     .get_eof = get_eof,
-    .pause = pause,
+    .pause = pause_pull_2,
     .resume = resume,
     .priv_size = sizeof(struct ao_pull_state),
 };

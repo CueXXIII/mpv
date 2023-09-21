@@ -547,7 +547,7 @@ static void reset(struct ao *ao)
 }
 
 // Pause the audio stream by corking it on the server
-static void pause(struct ao *ao)
+static void pause_pulse_2(struct ao *ao)
 {
     cork(ao, true);
 }
@@ -821,7 +821,7 @@ const struct ao_driver audio_out_pulse = {
     .get_space = get_space,
     .play      = play,
     .get_delay = get_delay,
-    .pause     = pause,
+    .pause     = pause_pulse_2,
     .resume    = resume,
     .drain     = drain,
     .wait      = wait_audio,
