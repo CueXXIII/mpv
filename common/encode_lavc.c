@@ -421,7 +421,6 @@ void encode_lavc_finish(struct encode_lavc_context *ctx)
         }
 
         for (i = 0; i < ctx->avc->nb_streams; i++) {
-            av_free(ctx->avc->streams[i]->info);
             av_free(ctx->avc->streams[i]);
         }
         ctx->vst = NULL;
