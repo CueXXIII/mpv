@@ -135,7 +135,7 @@ static void reset(struct ao *ao)
 }
 
 // stop playing, keep buffers (for pause)
-static void pause(struct ao *ao)
+static void pause_null_2(struct ao *ao)
 {
     struct priv *priv = ao->priv;
 
@@ -223,7 +223,7 @@ const struct ao_driver audio_out_null = {
     .get_space = get_space,
     .play      = play,
     .get_delay = get_delay,
-    .pause     = pause,
+    .pause     = pause_null_2,
     .resume    = resume,
     .drain     = wait_drain,
     .priv_size = sizeof(struct priv),
