@@ -452,7 +452,7 @@ int mp_aframe_pool_allocate(struct mp_aframe_pool *pool, struct mp_aframe *frame
     if (av_frame->extended_data != av_frame->data)
         av_freep(&av_frame->extended_data); // sigh
     av_frame->extended_data =
-        av_calloc(planes, sizeof(av_frame->extended_data[0]));
+        av_mallocz_array(planes, sizeof(av_frame->extended_data[0]));
     if (!av_frame->extended_data)
         abort();
     av_frame->buf[0] = av_buffer_pool_get(pool->avpool);
